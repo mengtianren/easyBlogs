@@ -1,26 +1,25 @@
 import React from "react";
-import { Layout } from "antd";
-import { Route, BrowserRouter  as Router } from "react-router-dom";
+
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import "../assets/router.less";
-import Headers from "../public/header";
-import Footers from "../public/footer";
-// import Siders from "../public/sider";
 
-import Home from "../app/home";
+import Index from "../app/index";
 import Detail from "../app/detail";
-
-const { Content } = Layout;
+import User from "../app/user";
 
 const AppRouter = () => (
   <Router>
-    <Layout className="mybody">
-      <Headers />
-      <Content>
-        <Route exact path="/" component={Home} />
-        <Route path="/detail/:id" component={Detail} />
-      </Content>
-      <Footers />
-    </Layout>
+    <Redirect form="/" to="/index/all" />
+    <Switch>
+      <Route path="/index" component={Index} />
+      <Route path="/user/" component={User} />
+      <Route path="/detail/:id" component={Detail} />
+    </Switch>
   </Router>
 );
 

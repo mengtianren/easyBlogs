@@ -7,15 +7,20 @@ export default class Headers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: "Vue"
+      current: "all"
     };
   }
+  componentDidMount() {}
 
   handleClick = e => {
-    console.log("click ", e);
-    this.setState({
-      current: e.key
-    });
+    this.setState(
+      {
+        current: e.key
+      },
+      () => {
+        this.props.toUrl(e.key);
+      }
+    );
   };
 
   render() {
@@ -26,25 +31,25 @@ export default class Headers extends Component {
           onClick={this.handleClick}
           selectedKeys={[this.state.current]}
           mode="horizontal"
-          className=""
+          className="menu"
         >
-          <Menu.Item key="All">
+          <Menu.Item key="all">
             <Icon type="mail" />
             全部
           </Menu.Item>
-          <Menu.Item key="Vue">
+          <Menu.Item key="vue">
             <Icon type="mail" />
             关于Vue
           </Menu.Item>
-          <Menu.Item key="React">
+          <Menu.Item key="react">
             <Icon type="mail" />
             关于React
           </Menu.Item>
-          <Menu.Item key="Angular">
+          <Menu.Item key="angular">
             <Icon type="mail" />
             关于Angular
           </Menu.Item>
-          <Menu.Item key="User">
+          <Menu.Item key="user">
             <Icon type="user" />
             关于作者
           </Menu.Item>
